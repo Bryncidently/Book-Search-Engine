@@ -4,6 +4,10 @@ const typeDefs = `
     username: String
     email: String
     password: String
+  },
+  type Query {
+    users: [User]
+ 
   }
 
   
