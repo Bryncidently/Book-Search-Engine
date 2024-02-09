@@ -25,10 +25,9 @@ const startApolloServer = async () => {
     app.use(express.static(path.join(__dirname, '../client/build')));
   } //here
   
-  app.use('/graphql', expressMiddleware(server, {
-    context: authMiddleware
-  }));
-
+  app.use('/graphql', expressMiddleware(server));
+  app.use(routes);
+  
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
