@@ -33,7 +33,7 @@ const SavedBooks = () => {
   const userData = data
 
   // const newdata = {...userData?.me};
-  const [removeBook] = useMutation( REMOVE_BOOK );
+  const [removeBook] = useMutation( REMOVE_BOOK);
   // use this to determine if `useEffect()` hook needs to run again
   // const userDataLength = Object.keys(userData).length;
 
@@ -42,16 +42,16 @@ const SavedBooks = () => {
   const handleDeleteBook = async (bookId) => {
     
     try {
-      const data = await removeBook({
-      variables: { bookId: bookId },
+      const {data} = await removeBook({
+      variables: { bookId: bookId, userId: userId },
     });
     if (!data) {
       throw new Error("something went wrong!");
     }
      // update state of books:
-    setData(()=>{
-      return{...userData, savedBooks: data.data.removeBook.savedBooks}
-    })
+    // setData(()=>{
+    //   return{...userData, savedBooks: data.data.removeBook.savedBooks}
+    // })
   } catch (err) {
     console.error(err);
   }
