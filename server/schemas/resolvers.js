@@ -3,9 +3,9 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    me: async () => {
-      return await User.find({});
-    }
+    me: async (parent, { userId }) => {
+      return User.findOne({ _id: userId });
+    },
   },
 
   Mutation: {
@@ -32,22 +32,23 @@ const resolvers = {
       return { token, user };
     },
 
-    // saveBook: async (parent, { userId, book }) => {
-    //   return User.findOneAndUpdate(
-    //     { _id: userId },
-    //     {
-    //       $addToSet: { books: book },
-    //     },
-    //     {
-    //       new: true,
-    //       runValidators: true,
-    //     }
-    //   );
-    // },
-    removeBook: async (parent, { userId, bookId }) => {
+    saveBook: async (parent, {book, id }) => {
+      return User.findOneAndUpdate(
+        { _id: id },
+        {
+          $addToSet: { savedBooks: book },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
+
+    removeBook: async (parent, { bookId }) => {
       return User.findOneAndUpdate(
         { _id: userId },
-        { $pull: { books: {bookId} }},
+        { $pull: { savedBooks: {bookId} }},
         { new: true }
       );
     },
