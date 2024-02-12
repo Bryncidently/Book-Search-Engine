@@ -25,7 +25,7 @@ For additional questions, contact [bryncidently](https://github.com/bryncidently
 
 ## Links
 
-Link to deployed web application [HERE](https://bryns-portfolio.netlify.app/)
+Link to deployed web application [HERE](https://peaceful-sands-39009-3ceb938225b4.herokuapp.com/)
 
 ## Images
 
