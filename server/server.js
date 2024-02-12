@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
-const routes = require('./routes');
+
 const { typeDefs, resolvers } = require('./schemas'); 
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
@@ -26,7 +26,7 @@ const startApolloServer = async () => {
   } //here
   
   app.use('/graphql', expressMiddleware(server));
-  app.use(routes);
+
   
   db.once('open', () => {
     app.listen(PORT, () => {
